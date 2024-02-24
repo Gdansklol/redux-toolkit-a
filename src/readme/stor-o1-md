@@ -1,0 +1,54 @@
+- redux stor and redux  are
+kind of used interchangeably
+both stand for contaier for javascript apps
+and it stores the whole state of the app in 
+an immutable object tree and really the intended
+pattern for redux is just to have a single
+stor for application. 
+
+- multiple stores are possible
+but that is not what is recommended 
+by the creators of recux
+
+- to start stor, 
+
+```js
+import {configureStore} from "reduxjs/toolkit";
+```
+- configureStore(): wraps createStore to provide simplified configuration options and good defaults. It can automatically combine your slice reducers, adds whatever Redux middleware you supply, includes redux-thunk by default, and enables use of the Redux DevTools Extension.
+
+
+
+- and then
+
+```js
+export const store = configureStor()
+```
+inside the configureStore ({})
+we have an object and it holds a 
+
+reducer:
+
+this reducer is going to empty for now
+
+ reducer : {
+
+ }
+
+ - but we're going to come back and 
+ put in reducers that we create so we'll just
+ save this file after creating our store 
+ we need to go back to the index.js and import
+ that so let's import 
+ 
+ index.js
+ ```js
+ import {store} from "./app/store";
+ ```
+
+ ```js
+ import {Provider}
+ ```
+
+ Provider which will provide this global state to
+ app so that comes from react-redux. 
