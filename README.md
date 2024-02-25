@@ -14,6 +14,8 @@ Effective: It lets you focus on what your app needs to do, so you can write less
 Doc link : (https://redux-toolkit.js.org/introduction/getting-started)
 
 
+Doc kor link : (https://ko.redux.js.org/introduction/why-rtk-is-redux-today/)
+
 `npm install`
 
 ```bash
