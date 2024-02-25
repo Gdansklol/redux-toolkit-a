@@ -1,48 +1,57 @@
-import React,{useState }from 'react';
-import {useSelector, useDispatch} from "react-redux";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import {
-    increment, 
+    increment,
     decrement,
     reset,
-    incrementByAmount
+    incrementByAmount,
+    decrementByAmount
 } from "./CounterSlice";
 
-
-
-
 const Counter = () => {
-    const count = useSelector((state)=> state.counter.count);
+    const count = useSelector((state) => state.counter.count);
     const dispatch = useDispatch();
 
     const [incrementAmount, setIncrementAmount] = useState(0);
+    const [decrementAmount, setDecrementAmount] = useState(0);
 
     const addValue = Number(incrementAmount) || 0;
+    const subtractValue = Number(decrementAmount) || 0; // Corrected variable name
 
     const resetAll = () => {
         setIncrementAmount(0);
+        setDecrementAmount(0); // Reset both increment and decrement amounts
         dispatch(reset());
     }
 
-  return (
-    <section>
-        <p>{count}</p>
-        <div>
-            <button onClick={()=>dispatch(increment())}>+</button>
-            <button onClick={()=>dispatch(decrement())}>-</button>
-        </div>
+    const handleDecrement = () => {
+        console.log("Subtract Value:", subtractValue); // Log subtractValue before dispatching action
+        dispatch(decrementByAmount(subtractValue));
+    }
 
-        <input
-        type='text'
-        value={incrementAmount}
-        onChange={(e) => setIncrementAmount(e.target.value)}
-         />
+    return (
+        <section>
+            <p>{count}</p>
+            <div>
+                <button onClick={() => dispatch(increment())}>+</button>
+                {/* <button onClick={() => dispatch(decrement())}>-</button> */}
+                <button onClick={handleDecrement}>-</button> {/* Call handleDecrement instead */}
+            </div>
+
+            <input
+                type='text'
+                value={incrementAmount}
+                onChange={(e) => setIncrementAmount(e.target.value)}
+            />
 
             <div>
                 <button onClick={() => dispatch(incrementByAmount(addValue))}>Add Amount</button>
+                <button onClick={() => dispatch(decrementByAmount(subtractValue))}>Subtract Amount</button>
+
                 <button onClick={resetAll}>Reset</button>
             </div>
-    </section>
-  )
+        </section>
+    )
 }
 
-export default Counter
+export default Counter;
